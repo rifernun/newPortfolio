@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Richard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #18191a 0%, #232526 100%);
+            color: #fff;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 16px 48px 16px 0;
+            background: rgba(0,0,0,0.92);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            animation: slideDown 1s;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0;}
+            to { transform: translateY(0); opacity: 1;}
+        }
+        .header {
+            margin-right: auto;
+            padding-left: 48px;
+        }
+        .header h2 {
+            color: crimson;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        .navbar a {
+            color: crimson;
+            font-size: 1.1rem;
+            margin-left: 36px;
+            text-decoration: none;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .navbar a:hover {
+            color: #fff;
+            border-bottom: 2px solid crimson;
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            padding: 0 0 60px 0;
+        }
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 70% 30%, #ffb3c6 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, #b3c6ff 0%, transparent 60%);
+            animation: moveBg 10s linear infinite alternate;
+            filter: blur(2px);
+            opacity: 0.5;
+        }
+        @keyframes moveBg {
+            0% { background-position: 70% 30%, 20% 80%;}
+            100% { background-position: 60% 40%, 30% 70%;}
+        }
+        /* Aparecer ao scroll */
+        .show-on-scroll {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .scroll-hidden {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        /* Apresentação */
+        .portfolio-animation {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            width: 100%;
+            min-height: 100vh;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .portfolio-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 32px rgba(220,20,60,0.25);
+            animation: float 3s ease-in-out infinite;
+            background: #fff;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0);}
+            50% { transform: translateY(-20px);}
+        }
+        .portfolio-animation-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(35,37,38,0.7);
+            padding: 36px 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+            backdrop-filter: blur(6px);
+            max-width: 500px;
+        }
+        .portfolio-animation-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .portfolio-animation-text h1 span {
+            color: crimson;
+            transition: color 0.5s;
+        }
+        .portfolio-animation-text p {
+            font-size: 1.15rem;
+            color: #e3e3e3;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn-main {
+            background: crimson;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(220,20,60,0.15);
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .btn-main:hover {
+            background: #fff;
+            color: crimson;
+            transform: scale(1.05);
+        }
+        /* Sobre */
+        .about-section {
+            background: linear-gradient(180deg, #232526 60%, #18191a 100%);
+            padding: 60px 0 60px 0;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30,30,35,0.85);
+            border-radius: 18px;
+            padding: 36px 32px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            text-align: center;
+        }
+        .about-content h2 {
+            color: crimson;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .about-content p {
+            font-size: 1.15rem;
+            color: #e3e3e3;
+            line-height: 1.7;
+        }
+        /* Habilidades */
+        .skills-section {
+            background: linear-gradient(180deg, #18191a 60%, #232526 100%);
+            padding: 60px 0 60px 0;
+        }
+        .skills-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .skills-content h2 {
+            color: crimson;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        .skill-item {
+            background: rgba(40,40,50,0.85);
+            border-radius: 12px;
+            padding: 18px 28px;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            min-width: 120px;
+            transition: transform 0.2s;
+        }
+        .skill-item:hover {
+            transform: scale(1.08);
+            background: rgba(220,20,60,0.12);
+            color: crimson;
+        }
+        /* Projetos */
+        .projects-section {
+            min-height: 100vh;
+            padding: 60px 0 40px 0;
+            background: linear-gradient(180deg, #232526 60%, #18191a 100%);
+            animation: fadeInUp 1.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .projects-title {
+            text-align: center;
+            font-size: 2rem;
+            color: crimson;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .projects-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .project-card {
+            background: rgba(40, 40, 50, 0.92);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(220,20,60,0.10), 0 1.5px 8px rgba(0,0,0,0.15);
+            padding: 28px 24px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1.5px solid rgba(220,20,60,0.10);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 210px;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        .project-card.show-on-scroll {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .project-card h3 {
+            color: #ff3860;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            font-size: 1.2rem;
+        }
+        .project-card p {
+            color: #f3f3f3;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+        .project-card a {
+            color: #fff;
+            background: #ff3860;
+            padding: 7px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 0.98rem;
+            transition: background 0.3s, color 0.3s;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(220,20,60,0.10);
+            align-self: flex-start;
+        }
+        .project-card a:hover {
+            background: #fff;
+            color: #ff3860;
+        }
+        /* Contato */
+        .contact-section {
+            background: linear-gradient(180deg, #18191a 60%, #232526 100%);
+            padding: 60px 0 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-content {
+            max-width: 500px;
+            background: rgba(30,30,35,0.85);
+            border-radius: 18px;
+            padding: 36px 32px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            text-align: center;
+        }
+        .contact-content h2 {
+            color: crimson;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .contact-content p {
+            font-size: 1.1rem;
+            color: #e3e3e3;
+            margin-bottom: 18px;
+        }
+        .contact-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .contact-links a {
+            color: #fff;
+            background: #ff3860;
+            padding: 10px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+        .contact-links a:hover {
+            background: #fff;
+            color: #ff3860;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0 10px 0;
+            background: rgba(0,0,0,0.92);
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 0;
+            box-shadow: 0 -2px 16px rgba(0,0,0,0.10);
+        }
+        /* Responsivo */
+        @media (max-width: 1000px) {
+            .portfolio-animation {
+                flex-direction: column;
+                gap: 18px;
+                min-height: 100vh;
+                padding: 24px 0;
+            }
+            .portfolio-image {
+                width: 150px;
+                height: 150px;
+            }
+            .portfolio-animation-text {
+                padding: 14px 9px;
+                max-width: 100vw;
+            }
+            .about-content,
+            .contact-content {
+                padding: 16px 6px;
+                max-width: 98vw;
+            }
+            .skills-list {
+                gap: 8px;
+            }
+            .project-card {
+                width: 96vw;
+                min-width: unset;
+                padding: 12px 4px;
+            }
+            .projects-grid {
+                gap: 10px;
+            }
+        }
+        @media (max-width: 700px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px;
+            }
+            .header {
+                padding-left: 4px;
+                text-align: center;
+            }
+            .header h2 {
+                font-size: 1rem;
+            }
+            .navbar a {
+                display: none;
+                font-size: 0.95rem;
+                margin-left: 10px;
+            }
+            .portfolio-animation-text h1 {
+                font-size: 1rem;
+            }
+            .portfolio-image {
+                width: 120px;
+                height: 120px;
+            }
+            .about-content,
+            .contact-content {
+                font-size: 0.98rem;
+            }
+            .skills-list {
+                gap: 4px;
+            }
+            .skill-item {
+                padding: 7px 8px;
+                font-size: 0.9rem;
+                min-width: 70px;
+            }
+            .projects-title {
+                font-size: 1rem;
+            }
+            .project-card {
+                width: 90vw;
+                padding: 7px 1vw;
+                font-size: 0.93rem;
+            }
+            .footer {
+                font-size: 0.85rem;
+                padding: 8px 0 4px 0;
+            }
+        }
+        .typewriter::after {
+            content: '|';
+            animation: blink 1s steps(1) infinite;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-bg"></div>
+    <div class="navbar">
+        <div class="header">
+            <h2>Richard</h2>
+        </div>
+        <a href="#">Home</a>
+        <a href="#about">Sobre</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#projects">Projetos</a>
+        <a href="#contact">Contato</a>
+        <a href="https://github.com/rifernun" target="_blank">GitHub</a>
+    </div>
+    <section class="section portfolio-section" id="home">
+        <div class="portfolio-animation scroll-hidden">
+            <img src="./img/icon.jpg" class="portfolio-image" alt="Foto de perfil">
+            <div class="portfolio-animation-text">
+                <h1>
+                    Olá, sou <span id="dev" class="typewriter"></span>
+                </h1>
+                <p>
+                    Bem-vindo ao meu portfólio! Sou um desenvolvedor web full stack apaixonado por criar experiências digitais incríveis. Role para baixo e conheça meu trabalho!
+                </p>
+                <button class="btn-main" onclick="window.location='#projects'">Ver Projetos</button>
+            </div>
+        </div>
+    </section>
+    <section class="about-section section" id="about">
+        <div class="about-content scroll-hidden">
+            <h2>Sobre Mim</h2>
+            <p>
+                Sou um desenvolvedor web com experiência em projetos front-end e back-end, focado em entregar soluções modernas, performáticas e com ótima experiência de usuário.<br>
+                Trabalho com JavaScript, Node.js, APIs REST, bancos de dados e muito mais.<br>
+                Gosto de aprender novas tecnologias e transformar ideias em produtos digitais reais.
+            </p>
+        </div>
+    </section>
+    <section class="skills-section section" id="skills">
+        <div class="skills-content scroll-hidden">
+            <h2>Habilidades</h2>
+            <div class="skills-list">
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript (ES6+)</div>
+                <div class="skill-item">Knex.js</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Express</div>
+                <div class="skill-item">MySQL</div>
+                <div class="skill-item">REST API</div>
+                <div class="skill-item">Git & GitHub</div>
+                <div class="skill-item">Figma</div>
+            </div>
+        </div>
+    </section>
+    <section class="projects-section section" id="projects">
+        <div class="projects-title scroll-hidden">Projetos em Destaque</div>
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Cards de projetos serão inseridos via JS -->
+        </div>
+    </section>
+    <section class="contact-section section" id="contact">
+        <div class="contact-content scroll-hidden">
+            <h2>Contato</h2>
+            <p>Quer conversar sobre projetos, freelas ou oportunidades? Me envie um e-mail ou me chame nas redes!</p>
+            <div class="contact-links">
+                <a href="mailto:rifernun@gmail.com">E-mail</a>
+                <a href="https://wa.me/5515991136322" target="_blank">WhatsApp</a>
+                <a href="https://www.linkedin.com/in/richard-ferreira-090448296/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+        <p>© 2025 Richard. Todos os direitos reservados.</p>
+    </div>
+    <script>
+        // Animação de texto dinâmico
+        const devText = document.getElementById('dev');
+        const words = ['Web Developer', 'Full Stack', 'Node.js Devoloper', 'API Developer'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                devText.textContent = currentWord.substring(0, charIndex--);
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeWriter, 700); // Pausa antes de começar a escrever a próxima palavra (aumentado)
+                } else {
+                    setTimeout(typeWriter, 70); // Velocidade de apagar (aumentado)
+                }
+            } else {
+                devText.textContent = currentWord.substring(0, charIndex++);
+                if (charIndex > currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, 1400); // Pausa antes de apagar (aumentado)
+                } else {
+                    setTimeout(typeWriter, 130); // Velocidade de digitação (aumentado)
+                }
+            }
+        }
+        typeWriter();
+
+        // Projetos fictícios animados
+        const projects = [
+            {
+                title: "Blog",
+                desc: "Blog interativo com banco de dados, autenticação e painel de administração.",
+            },
+            {
+                title: "API de Games",
+                desc: "REST API robusta para cadastro de jogos, com autenticação JWT.",
+            },
+            {
+                title: "LuniaBeauty",
+                desc: "Página para descobrir qual perfume mais se encaixa com você, de acordo com questionários.",
+            },
+            {
+                title: "TCC - TaskFLow",
+                desc: "Aplicação de gerenciamento de projetos baseado no Trello.",
+            }
+        ];
+        const grid = document.getElementById('projectsGrid');
+        projects.forEach((proj, i) => {
+            const card = document.createElement('div');
+            card.className = 'project-card scroll-hidden';
+            card.innerHTML = `
+                <h3>${proj.title}</h3>
+                <p>${proj.desc}</p>
+            `;
+            grid.appendChild(card);
+        });
+        
+
+        // Efeito aparecer ao scrollar
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.scroll-hidden, .show-on-scroll');
+            const windowHeight = window.innerHeight;
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.92 && rect.bottom > 60) {
+                    el.classList.add('show-on-scroll');
+                } else {
+                    el.classList.remove('show-on-scroll');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('resize', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+    </script>
+</body>
+</html>
