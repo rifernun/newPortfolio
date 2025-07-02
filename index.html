@@ -561,18 +561,22 @@
             {
                 title: "Blog",
                 desc: "Blog interativo com banco de dados, autenticação e painel de administração.",
+                img: "/img/blog.png"
             },
             {
                 title: "API de Games",
-                desc: "REST API robusta para cadastro de jogos, com autenticação JWT.",
+                desc: "REST API robusta para cadastro de jogos conectada com MySQL e com autenticação JWT.",
+                img: "/img/apigames.png"
             },
             {
                 title: "LuniaBeauty",
                 desc: "Página para descobrir qual perfume mais se encaixa com você, de acordo com questionários.",
+                img: "/img/luniabeauty.png"
             },
             {
                 title: "TCC - TaskFLow",
                 desc: "Aplicação de gerenciamento de projetos baseado no Trello.",
+                img: "/img/tccTaskflow.jpeg"
             }
         ];
         const grid = document.getElementById('projectsGrid');
@@ -582,6 +586,7 @@
             card.innerHTML = `
                 <h3>${proj.title}</h3>
                 <p>${proj.desc}</p>
+                ${proj.img ? `<img src="${proj.img}" alt="${proj.title}" style="width: 100%; border-radius: 12px; margin-top: 10px;">` : ''}
             `;
             grid.appendChild(card);
         });
