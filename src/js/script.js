@@ -33,25 +33,25 @@ const projects = [
     {
         title: "Blog",
         desc: "Blog interativo com banco de dados, autenticação e painel de administração.",
-        img: "/src/img/blog.png",
+        img: "./src/img/blog.png",
         link: 'https://github.com/rifernun/guiaPress'
     },
     {
         title: "API de Games",
         desc: "REST API robusta para cadastro de jogos conectada com MySQL e com autenticação JWT.",
-        img: "/src/img/apigames.png",
+        img: "./src/img/apigames.png",
         link: 'https://github.com/rifernun/CriacaoConsumoAPI'
     },
     {
         title: "LuniaBeauty",
         desc: "Página para descobrir qual perfume mais se encaixa com você, de acordo com questionários.",
-        img: "/src/img/luniabeauty.png",
+        img: "./src/img/luniabeauty.png",
         link: ''
     },
     {
         title: "TCC - TaskFLow",
         desc: "Aplicação de gerenciamento de projetos baseado no Trello (apenas protótipo).",
-        img: "/src/img/tccTaskflow.jpeg",
+        img: "./src/img/tccTaskflow.jpeg",
         link: ''
     }
 ];
